@@ -8,6 +8,7 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
+// router을 불러오는 부분
 const router = require("./routes");
 app.use('/', router);
 

@@ -29,9 +29,12 @@ exports.post_visitor = (data, cb) => {
     // cb라는 매개변수,
     var sql = `INSERT INTO visitor(name, comment) VALUES( '${data.name}', '${data.comment}')`;
     // 여기서 VALUES에 있는 값을 어떻게 받아올 건지가 관건
+    // id는 sql에서 auto_increment로 설정해놨기 때문에 테이블에 데이터를 추가할 필요가 없음.
+    // ?1 // 근데 여기서 궁금증은 여기 나오는 data는 도대체 어디서 나오는 data인지 모르겠습니다.
     cnn.query(sql, (err, result) => {
         // sql문 실행시켜서 결과값을 rows로 받아오겠다는 의미
-        // insert문에서는 
+        // ?2 // 위에 select문으로 결과값을 rows로 받아오는 건 이해가 가는데
+              // insert문은 테이블에 데이터를 추가해주는 건데 결과값을 받아올 수가 있는지 궁금합니다.
         if(err) throw err;
         console.log("visitors3: ", result);
 

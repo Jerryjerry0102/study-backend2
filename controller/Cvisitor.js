@@ -14,6 +14,7 @@ exports.post_visitor = (req, res) => {
     visitor.post_visitor(req.body, function(result){
         var data = {
             id: result,
+            // 여기서 result는 model에서 cb(result.insertId);로 받아온 result.
             name: req.body.name,
             //data1에서 받아온 걸 req.body로 쓰는 중
             comment: req.body.comment
