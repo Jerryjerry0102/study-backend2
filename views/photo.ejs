@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="id">
+        <input type="file" name="userfile" multiple>
+        <input type="file" name="profile">
+        <!-- multiple을 적으면 사진 선택은 2개가 되지만 -->
+        <!-- 서버에서 array를 해주지 않으면 업로드 불가 -->
+        <!-- 반대로 array는 적고 multiple을 적어주지 않으면 사진 선택 자체가 2개가 안 됨 -->
+        <button type="submit">업로드</button>
+    </form>
+</body>
+</html>
