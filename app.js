@@ -3,6 +3,7 @@ const app = express();
 // 8.31
 const multer = require("multer");
 const path = require("path");
+const { resourceLimits } = require("worker_threads");
 const upload = multer({
     storage: multer.diskStorage({
         destination(req, file, done){
@@ -30,28 +31,38 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 //
 
+app.get("/prac1_2", (req, res) => {
+    res.render("prac1_2", {});
+})
+app.post("/prac1_2_post", (req, res) => {
+    console.log(req.body)
+    res.render("prac1_2_post", {
+        name: req.body.name,
+        gender: req.body.gender,
+        year: req.body.year,
+        month: req.body.month,
+        day: req.body.day,
+        interest: req.body.interest
+    });
+})
 
-// app.get("/main2", (req, res) => {
-//     res.render("main2",{});
-// })
+app.get("/prac1_2_axios", (req, res) => {
+    console.log(req.query);
+    res.send(req.query);
+})
 
-// app.get("/get/axios2", (req, res) => {
-//     console.log(req.query);
-//     var data = {
-//         name: req.query.name,
-//         gender: req.query.gender,
-//         birth: req.query.birth,
-//         interest: req.query.interest
-//     }
-//     res.send(req.query);
-// })
 
-// app.get("/prac3", (req, res) => {
-//     res.render("prac3", {
-//         id: "miso6495",
-//         password: "mm6495"
-//     });
-// })
+app.get("/login_basic", (req, res) => {
+    res.render("login_basic");
+})
+app.post("/login_basic_axios", (req, res) => {
+    if(req.body.id == "miso6495" && req.body.pw == "mm6495"){
+        res.send("로그인 성공");
+    }
+    else{
+        res.send("아이디 또는 비밀번호를 잘못 입력했습니다.");
+    }
+})
 
 
 app.listen(port, ()=>{
