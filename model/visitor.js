@@ -7,10 +7,10 @@ const cnn = mysql.createConnection({
     database: 'kdt_test'
 });
 
-cnn.query('SELECT * FROM visitor', (err, rows) => {
-    if(err) throw err;
-    console.log("visitors:", rows);
-})
+// cnn.query('SELECT * FROM visitor', (err, rows) => {
+//     if(err) throw err;
+//     console.log("visitors:", rows);
+// })
 
 exports.get_visitor = (cb) => {
 // cb라는 매개변수,

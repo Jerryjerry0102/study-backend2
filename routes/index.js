@@ -25,5 +25,13 @@ router.post("/visitor/delete", controllerV.delete_visitor);
 router.post("/visitor/get", controllerV.get_visitor);
 router.post("/visitor/update", controllerV.update_visitor);
 
+// mysql register복습
+var controllerG = require("../controller/Cguest");
+router.get("/guest", controllerG.guest);
+router.post("/guest/post", controllerG.post_guest);
+
+var controllerR = require("../controller/Cregister");
+router.get("/register", controllerR.register);
+router.post("/register/post", controllerR.post_register);
 
 module.exports = router;
