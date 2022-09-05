@@ -33,3 +33,13 @@ exports.post_guest = (data, cb) => {
         // function(result)로 들어감
     })
 }
+
+exports.delete_guest = (id, cb) => {
+    var sql = `DELETE FROM guest WHERE id = ${id}`
+    cnn.query(sql, (err, rows) => {
+        if(err) throw err;
+        console.log("delete:", rows);
+
+        cb();
+    })
+}
