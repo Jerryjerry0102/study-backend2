@@ -94,9 +94,9 @@ app.get("/photo_axios", (req, res) => {
     res.render("photo_axios", {});
 })
 app.post("/photo_axios_upload", upload.single("userfile"), (req, res) => {
-    console.log( req.file );
+    console.log( );
     console.log( req.body );
-    res.send( "업로드 성공" );
+    res.send(req.file.filename);
 })
 
 

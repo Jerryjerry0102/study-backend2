@@ -23,3 +23,24 @@ exports.post_visitor = (req, res) => {
         // 그래서 이걸 data에 받아서 res.send 하면 then(response)로 가서 쓰임
     })
 }
+
+exports.delete_visitor = (req, res) => {
+    visitor.delete_visitor(req.body.id, function(){
+        res.send("삭제 완료");
+        // 보낼 데이터가 없어도 응답은 해야한다.
+    })
+}
+
+exports.get_visitor = (req, res) => {
+    visitor.get_visitor_by_id(req.body.id, function(result){
+        
+        // if(result.length > 0)
+        res.send(result[0]);
+        // else res.send("뭔가 잘못됐어요")
+    })
+}
+exports.update_visitor = (req, res) => {
+    visitor.update_visitor(req.body, function(){
+        res.send(req.body);
+    })
+}

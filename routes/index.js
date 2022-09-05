@@ -21,6 +21,9 @@ router.post("/prac55_axios", controller5.prac55_axios);
 var controllerV = require("../controller/Cvisitor");
 router.get("/visitor", controllerV.visitor);
 router.post("/visitor/post", controllerV.post_visitor);
+router.post("/visitor/delete", controllerV.delete_visitor);
+router.post("/visitor/get", controllerV.get_visitor);
+router.post("/visitor/update", controllerV.update_visitor);
 
 
 module.exports = router;
