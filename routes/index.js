@@ -36,10 +36,15 @@ router.post("/guest/update", controllerG.update_guest);
 var controllerR = require("../controller/Cregister");
 router.get("/register", controllerR.register);
 router.post("/register/post", controllerR.post_register);
+router.post("/register/delete", controllerR.delete_register);
+router.post("/register/correct", controllerR.correct_register);
+router.post("/register/update", controllerR.update_register);
 
 var controllerN = require("../controller/Cneu");
 router.get("/neu", controllerN.neu);
 router.post("/neu/post", controllerN.post_neu);
 router.post("/neu/delete", controllerN.delete_neu);
+router.post("/neu/correct", controllerN.correct_neu);
+router.post("/neu/update", controllerN.update_neu);
 
 module.exports = router;

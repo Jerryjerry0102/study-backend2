@@ -37,6 +37,7 @@ exports.get_visitor = (req, res) => {
         // if(result.length > 0)
         res.send(result[0]);
         // else res.send("뭔가 잘못됐어요")
+        // 하나만 받아와도 결국 배열로 불러와지기 때문에 인덱스를 입력해야 함.
     })
 }
 exports.update_visitor = (req, res) => {

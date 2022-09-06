@@ -7,10 +7,10 @@ const cnn = mysql.createConnection({
     database: 'kdt_test'
 });
 
-cnn.query('SELECT * FROM neu', (err, rows) => {
-    if(err) throw err;
-    console.log("neu1:", rows);
-})
+// cnn.query('SELECT * FROM neu', (err, rows) => {
+//     if(err) throw err;
+//     console.log("neu1:", rows);
+// })
 
 exports.get_neu = (cb) => {
     var sql = "SELECT * FROM neu"
@@ -37,6 +37,26 @@ exports.delete_neu = (id, cb) => {
     cnn.query(sql, (err, rows) => {
         if(err) throw err;
         console.log("delete:", rows);
+
+        cb();
+    })
+}
+
+exports.correct_neu = (id, cb) => {
+    var sql = `SELECT * FROM neu WHERE id=${id}`
+    cnn.query(sql, (err, rows) => {
+        if(err) throw err;
+        console.log("correct:", rows);
+
+        cb(rows);
+    })
+}
+
+exports.update_neu = (data, cb) => {
+    var sql = `UPDATE neu SET name='${data.name}', comment='${data.comment}' WHERE id = ${data.id}`
+    cnn.query(sql, (err, rows) => {
+        if(err) throw err;
+        console.log("update: ", rows);
 
         cb();
     })

@@ -22,3 +22,15 @@ exports.delete_neu = (req, res) => {
         res.send("삭제 완료");
     })
 }
+
+exports.correct_neu = (req, res) => {
+    neu.correct_neu(req.body.id, function(result){
+        res.send(result[0]);
+    })
+}
+
+exports.update_neu = (req, res) => {
+    neu.update_neu(req.body, function(){
+        res.send(req.body);
+    })
+}

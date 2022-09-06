@@ -51,12 +51,12 @@ exports.get_guest = (id, cb) => {
         if(err) throw err;
         console.log("get:", rows);
 
-        cb();
+        cb(rows);
     })
 }
 
-exports.update_guest = (cb) => {
-    var sql = `UPDATE guest SET name = ${.name}, comment = ${.comment} WHERE id = ${.id}`
+exports.update_guest = (data, cb) => {
+    var sql = `UPDATE guest SET name = '${data.name}', comment = '${data.comment}' WHERE id = ${data.id}`
     // 저 3개를 불러올 방법 생각해보기
     cnn.query(sql, (err, rows) => {
         if(err) throw err;

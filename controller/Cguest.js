@@ -27,13 +27,13 @@ exports.delete_guest = (req, res) => {
 }
 
 exports.get_guest = (req, res) => {
-    guest.get_guest(function(){
-
+    guest.get_guest(req.body.id, function(result){
+        res.send(result[0]);
     })
 }
 
 exports.update_guest = (req, res) => {
-    guest.update_guest(function(){
-        
+    guest.update_guest(req.body, function(){
+        res.send(req.body)
     })
 }
