@@ -12,7 +12,7 @@ const cnn = mysql.createConnection({
 //     console.log("guest1 : ", rows);
 // })
 
-exports.get_guest = (cb) => {
+exports.guest = (cb) => {
     var sql = 'SELECT * FROM guest';
     cnn.query(sql, (err, rows) => {
         if(err) throw err;
@@ -39,6 +39,28 @@ exports.delete_guest = (id, cb) => {
     cnn.query(sql, (err, rows) => {
         if(err) throw err;
         console.log("delete:", rows);
+
+        cb();
+    })
+}
+
+exports.get_guest = (id, cb) => {
+    var sql = `SELECT * FROM guest WHERE id = ${id}`
+    // id를 가져오는 방법 생각해보자
+    cnn.query(sql, (err, rows) => {
+        if(err) throw err;
+        console.log("get:", rows);
+
+        cb();
+    })
+}
+
+exports.update_guest = (cb) => {
+    var sql = `UPDATE guest SET name = ${.name}, comment = ${.comment} WHERE id = ${.id}`
+    // 저 3개를 불러올 방법 생각해보기
+    cnn.query(sql, (err, rows) => {
+        if(err) throw err;
+        console.log("update:", rows);
 
         cb();
     })

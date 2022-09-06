@@ -30,6 +30,8 @@ var controllerG = require("../controller/Cguest");
 router.get("/guest", controllerG.guest);
 router.post("/guest/post", controllerG.post_guest);
 router.post("/guest/delete", controllerG.delete_guest);
+router.post("/guest/get", controllerG.get_guest);
+router.post("/guest/update", controllerG.update_guest);
 
 var controllerR = require("../controller/Cregister");
 router.get("/register", controllerR.register);

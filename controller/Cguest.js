@@ -1,7 +1,7 @@
 const guest = require("../model/guest");
 
 exports.guest = (req, res) => {
-    guest.get_guest(function(result){
+    guest.guest(function(result){
     // model이랑 연결부분
         console.log("guest3 : ", result);
         res.render("guest", { data: result });
@@ -23,5 +23,17 @@ exports.post_guest = (req, res) => {
 exports.delete_guest = (req, res) => {
     guest.delete_guest(req.body.id, function(){
         res.send("삭제 완료");
+    })
+}
+
+exports.get_guest = (req, res) => {
+    guest.get_guest(function(){
+
+    })
+}
+
+exports.update_guest = (req, res) => {
+    guest.update_guest(function(){
+        
     })
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function add(n1, n2){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    var result = n1 + n2;
+                    resolve(result);
+                }, 1000)
+            })
+        }
+    
+        function mul(num){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    var result = num*3;
+                    resolve(result);
+                }, 700);
+            })
+        }
+
+        function sub(num){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    var result = num-2;
+                    resolve(result);
+                }, 500);
+            })
+        }
+
+        // // callback코드
+        // add(3, 2, function(result){
+        //     console.log("1 : ", result );
+
+        //     mul(result, function(result2){
+        //         console.log("2 : ", result2 );
+            
+        //     sub(result2, function(result3){
+        //         console.log("3: ", result3);
+        //         });
+        //     })
+        // })
+
+        // // promise
+        // add(3,2)
+        // .then((result) => {
+        //     console.log("1:", result);
+        //     mul(result)
+        //     .then((result) => {
+        //         sub(result)
+        //         .then(result)
+        //     })
+        // })
+        // 이렇게 promise함수를 쓰는 건 아무런 장점이 없다.
+
+        // // promise chaining
+        // add(3,2)
+        // .then((result1) => {
+        //     console.log("1:", result1);
+        //     return mul(result1);
+        // })
+        // .then((result2) => {
+        //     console.log("2:", result2);
+        //     return sub(result2);
+        // })
+        // .then((result3) => {
+        //     console.log("3:", reuslt3);
+        // })
+        // // 이 기능을 잘 활용하면 설계의 가독성을 높일 수 있다!
+    
+        // promise async
+        async function exec(){
+            let result1 = await add(3, 2);
+            console.log("1:", result1);
+            let result2 = await mul(result1);
+            console.log("2:", result2);
+            let result3 = await sub(result2);
+            console.log("3:", result3);
+        }
+        exec();
+    </script>
+</body>
+</html>

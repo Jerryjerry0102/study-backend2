@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function go_convenient(){
+            console.log('편의점에 들어가서 어떤 음료를 살지 고민한다.');
+        }
+        function pick(){
+            return new Promise( function( resolve, reject ){
+                setTimeout(function() {
+                    console.log('고민이 끝났다!');
+                    product = "콜라";
+                    payment = 1500;
+                    // resolve();
+                    resolve();
+                }, 3000);
+            });
+        }
+        function pay(){
+            console.log(`${product}의 금액인 ${payment}원을 지불한다.`);
+        }
+        var product;
+        var payment;
+
+        // promise chaining 함수
+        go_convenient();
+        pick()
+        .then(()=> {
+            pay();
+        })
+        .catch(()=> {
+            console.log("실패");
+        })
+
+        pay(product, payment);
+
+
+        // promise async함수
+        async function exec(){
+            var product;
+            var payment;
+            go_convenient();
+            await pick();
+            pay();
+        }
+        // await의 의미
+        // await 뒤에 있는 pick()함수가 끝날 때 까지 기다렸다가 pay()함수를 실행시킨다.
+        // pick() 함수가 promise 객체를 반환할 경우에만 먹힌다.
+
+        exec();
+    </script>
+</body>
+</html>

@@ -100,6 +100,22 @@ app.post("/photo_axios_upload", upload.single("userfile"), (req, res) => {
 })
 
 
+// 9.6 callback & promise 수업
+app.get("/setTime", (req, res) => {
+    res.render("setTime", {});
+})
+app.get("/a_callback", (req, res) => {
+    res.render("a_callback", {});
+})
+app.get("/a_promise", (req, res) => {
+    res.render("a_promise", {});
+})
+
+// 9.6 prac6
+app.get("/prac6", (req, res) => {
+    res.render("prac6", {});
+})
+
 app.listen(port, ()=>{
     console.log("server open: ", port);
 });
