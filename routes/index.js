@@ -47,4 +47,11 @@ router.post("/neu/delete", controllerN.delete_neu);
 router.post("/neu/correct", controllerN.correct_neu);
 router.post("/neu/update", controllerN.update_neu);
 
+var controllerA = require("../controller/Call");
+router.get("/all", controllerA.all);
+router.post("/all/post", controllerA.post_all);
+router.post("/all/delete", controllerA.delete_all);
+router.post("/all/load", controllerA.load_all);
+router.post("/all/correct", controllerA.correct_all);
+
 module.exports = router;
