@@ -116,6 +116,14 @@ app.get("/prac6", (req, res) => {
     res.render("prac6", {});
 })
 
+// 9.8 드림코딩
+app.get("/b_callback", (req, res) => {
+    res.render("b_callback", {});
+})
+app.get("/b_promise", (req, res) => {
+    res.render("b_promise", {});
+})
+
 app.listen(port, ()=>{
     console.log("server open: ", port);
 });

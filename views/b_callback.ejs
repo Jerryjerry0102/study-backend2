@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JavaScript is synchronous.
+        // Execute the code block by orger after hoisting.
+        // hoisting: var, function declaration
+        // 선언들이 제일 위로 올라가는 것이 hoisting
+
+
+        // synchronous(동기)는 순서에 맞게 코드가 실행되는 것
+        // asynchronous(비동기)는 비동기적으로 언제 코드가 실행될지 예측할 수 없는 것
+        
+        // 정해진 시간이 지나면 우리가 지정한 콜백함수를 실행함
+        // 콜백함수는 "우리가 전달해준 함수를 나중에 네가 불러줘" 라는 개념
+        console.log('1');                                               //동기
+        setTimeout(function(){                                          //비동기
+            console.log('2');
+        }, 1000)
+        console.log('3');                                               //동기
+        // Javascript engine은 코드를 제일 위에서 부터 밑으로 실행을 하게 된다.
+        // 하지만 setTimeout을 쓰면 비동기적으로 실행을 시킬 수 있다.
+        // setTimeout은 브라우저한테 요청한다
+
+
+        // <Synchronous callback>
+        // (즉각적으로) 동기 콜백
+        function printImmediately(print){
+            print();
+        }
+        printImmediately(() => console.log("hello"))                    //동기
+
+        // <Asynchronous callback>
+        // (언제실행될지 예측할 수 없는) 비동기 콜백
+        function printWithDelay(print, timeout){
+             setTimeout(print, timeout);
+        }
+        printWithDelay(() => console.log('async callback'), 2000);      //비동기
+
+        // JavaScript는 함수를 이렇게 콜백형태로 인자로 다른 함수에 전달할 수도 있고
+        // 또는 변수에 할당할 수도 있는 언어
+
+ 
+
+        // <Callback Hell example>
+        class UserStorage {
+            loginUser(id, password, onSuccess, onError){
+                setTimeout(() => {
+                    if(
+                        (id === 'ellie' && password === 'dream') ||
+                        (id === 'coder' && password === 'academy')
+                    ) {
+                        onSuccess(id);
+                    } else {
+                        onError(new Error('not found'));
+                    }
+                }, 2000);
+            }
+
+            getRoles(user, onSuccess, onError){
+                setTimeout(() => {
+                    if(user === 'ellie'){
+                        onSuccess({ name: 'ellie', role: 'admin'});
+                    } else {
+                        onError(new Error('no access'));
+                    }
+                }, 1000);
+            }
+        }
+
+        const userStorage = new UserStorage();
+        const id = prompt('enter your id');
+        const password = prompt('enter your password');
+        userStorage.loginUser(id, password, (user) => {
+            userStorage.getRoles(user, (userWithRole) => {
+                alert(`Hello ${userWithRole.name}, you have a ${userWithRole.role} role`);
+            }, (error) => {console.log(error);
+            })
+        }, (error) => { console.log(error);
+        })
+
+    </script>
+</body>
+</html>
