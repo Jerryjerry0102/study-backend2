@@ -35,32 +35,23 @@
             })
         }
 
-        // // callback코드
-        // add(3, 2, function(result){
-        //     console.log("1 : ", result );
-
-        //     mul(result, function(result2){
-        //         console.log("2 : ", result2 );
-            
-        //     sub(result2, function(result3){
-        //         console.log("3: ", result3);
-        //         });
-        //     })
-        // })
-
-        // // promise
+        // promise
         // add(3,2)
         // .then((result) => {
         //     console.log("1:", result);
         //     mul(result)
         //     .then((result) => {
+        //         console.log("2:", result);
         //         sub(result)
-        //         .then(result)
+        //         .then((result) => {
+        //             console.log("3:", result);
+        //         })
         //     })
         // })
         // 이렇게 promise함수를 쓰는 건 아무런 장점이 없다.
+        // callback 지옥과 다를게 없음.
 
-        // // promise chaining
+        // promise chaining
         // add(3,2)
         // .then((result1) => {
         //     console.log("1:", result1);
@@ -71,9 +62,9 @@
         //     return sub(result2);
         // })
         // .then((result3) => {
-        //     console.log("3:", reuslt3);
+        //     console.log("3:", result3);
         // })
-        // // 이 기능을 잘 활용하면 설계의 가독성을 높일 수 있다!
+        // 이 기능을 잘 활용하면 설계의 가독성을 높일 수 있다!
     
         // promise async
         async function exec(){

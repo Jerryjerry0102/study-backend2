@@ -101,8 +101,8 @@ app.post("/photo_axios_upload", upload.single("userfile"), (req, res) => {
 
 
 // 9.6 callback & promise 수업
-app.get("/setTime", (req, res) => {
-    res.render("setTime", {});
+app.get("/a_setTime", (req, res) => {
+    res.render("a_setTime", {});
 })
 app.get("/a_callback", (req, res) => {
     res.render("a_callback", {});

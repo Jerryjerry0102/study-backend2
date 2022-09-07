@@ -7,10 +7,10 @@ const cnn = mysql.createConnection({
     database: 'kdt_test'
 });
 
-cnn.query('SELECT * FROM alle', (err, rows) => {
-    if(err) throw err;
-    console.log("alles1:", rows);
-})
+// cnn.query('SELECT * FROM alle', (err, rows) => {
+//     if(err) throw err;
+//     console.log("alles1:", rows);
+// })
 
 exports.all = (cb) => {
     var sql = 'SELECT * FROM alle'

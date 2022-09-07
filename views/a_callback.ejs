@@ -28,13 +28,13 @@
         }
 
         add(3, 2, function(result){
-            console.log("1 : ", result );
+            console.log("1: ", result );
 
             mul(result, function(result2){
-                console.log("2 : ", result2 );
+                console.log("2: ", result2 );
             
-            sub(result2, function(result3){
-                console.log("3: ", result3);
+                sub(result2, function(result3){
+                    console.log("3: ", result3);
                 });
             })
         })

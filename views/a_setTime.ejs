@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function go_convenient(){
+            console.log('편의점에 들어가서 어떤 음료를 살지 고민한다.');
+        }
+        function pick(){
+            return new Promise( function( resolve, reject ){
+                setTimeout(function() {
+                    console.log('고민이 끝났다!');
+                    product = "콜라";
+                    payment = 1500;
+                    // resolve();
+                    resolve();
+                }, 3000);
+            });
+        }
+        function pay(){
+            console.log(`${product}의 금액인 ${payment}원을 지불한다.`);
+        }
+        var product;
+        var payment;
+
+        // // promise chaining 함수
+        // go_convenient();
+        // pick()
+        // .then(()=> {
+        //     pay();
+        // })
+        // .catch(()=> {
+        //     console.log("실패");
+        // })
+
+
+        // // promise async함수
+        async function exec(){
+            go_convenient();
+            await pick();
+            pay();
+        }
+        exec();
+        // // await의 의미
+        // // await 뒤에 있는 pick()함수가 끝날 때 까지 기다렸다가 pay()함수를 실행시킨다.
+        // // pick() 함수가 promise 객체를 반환할 경우에만 먹힌다.
+
+    
+
+        // basic
+        // function go_convenient(){
+        //     console.log('편의점에 들어가서 어떤 음료를 살지 고민한다.');
+        // }
+
+        // function pick(){
+        //     setTimeout(function(){
+        //         console.log('고민이 끝났다!');
+        //             product = "콜라";
+        //             payment = 1500;
+        //     }, 3000);
+        // }
+
+        // function pay(product, payment){
+        //     console.log(`${product}의 금액인 ${payment}원을 지불한다.`)
+        // }
+        // var product;
+        // var payment;
+        // go_convenient();
+        // pick();
+        // pay(product, payment);
+
+
+
+        // callback 함수
+        // function go_convenient(){
+        //     console.log('편의점에 들어가서 어떤 음료를 살지 고민한다.');
+        // }
+
+        // function pick( callback ){
+        //     setTimeout(function(){
+        //         console.log('고민이 끝났다!');
+        //         var product = "콜라";
+        //         var payment = 1500; 
+
+        //         callback(product, payment);
+        //     }, 3000);
+        // }
+
+        // function pay(product, payment){
+        //     console.log(`${product}의 금액인 ${payment}원을 지불한다.`)
+        // }
+
+        // go_convenient();
+        // pick(pay);
+        // 아니면 아래 처럼 쓸 수도 있다.
+        // go_convenient();
+        // pick( function(product, payment){
+        //     console.log(`${product}의 금액인 ${payment}원을 지불한다.`)
+        // })
+
+
+        // // promise 함수
+        // function go_convenient(){
+        //     console.log('편의점에 들어가서 어떤 음료를 살지 고민한다.');
+        // }
+
+        // function pick(){
+        //     return new Promise(function( resolve, reject ){
+        //         setTimeout(function(){
+        //             console.log('고민이 끝났다!');
+        //             product = "콜라";
+        //             payment = 1500; 
+
+        //             resolve();
+        //         }, 3000);
+        //     })
+        // }
+
+        // function pay(){
+        //     console.log(`${product}의 금액인 ${payment}원을 지불한다.`)
+        // }
+        // var product;
+        // var payment;
+
+        // go_convenient();
+        // pick()
+        // .then(pay);
+
+        // 아니면 아래처럼 쓸 수 있다.
+        // go_convenient();
+        // pick()
+        // .then(function(){
+        //     console.log(`${product}의 금액인 ${payment}원을 지불한다.`)
+        // })
+
+
+        // promise 함수(위랑 똑같은데 데이터를 보내는 방식을 다르게 해 봄)
+        // 이유는 resolve나 reject의 경우 파라미터를 여러개 작성해도 처음 하나만을 사용하기 때문에
+        // 다수의 파라미터 값을 넘겨주려면 참조하고 있는 "하나"의 주소값을 가지고 있는 배열이나 object를 사용해야 함
+        // 그걸 적용시켜 본 것
+        // function go_convenient(){
+        //     console.log('편의점에 들어가서 어떤 음료를 살지 고민한다.');
+        // }
+
+        // function pick(){
+        //     return new Promise(function( resolve, reject ){
+        //         setTimeout(function(){
+        //             console.log('고민이 끝났다!');
+        //             var data = { 
+        //                 product : "콜라",
+        //                 payment : 1500
+        //             }
+        //             resolve(data);
+        //         }, 3000);
+        //     })
+        // }
+
+        // function pay(){
+        //     console.log(`${product}의 금액인 ${payment}원을 지불한다.`)
+        // }
+    
+        // go_convenient();
+        // pick()
+        // .then(function(result){
+        //     console.log(`${result.product}의 금액인 ${result.payment}원을 지불한다.`)
+        // })
+    </script>
+</body>
+</html>
