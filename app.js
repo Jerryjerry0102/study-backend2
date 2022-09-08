@@ -123,6 +123,9 @@ app.get("/b_callback", (req, res) => {
 app.get("/b_promise", (req, res) => {
     res.render("b_promise", {});
 })
+app.get("/b_callback_to_promise", (req, res) => {
+    res.render("b_callback_to_promise", {});
+})
 
 app.listen(port, ()=>{
     console.log("server open: ", port);

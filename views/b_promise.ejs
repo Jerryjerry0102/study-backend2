@@ -2,58 +2,191 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <script>
-        // promise
+        // // promise
 
-        // promise는 javascript에서 제공하는 비동기를 간편하게 처리할 수 있도록 도와주는 object
-        // promise는 정해진 장시간의 기능을 수행하고 나서 정상적으로 기능이 수행되어졌다면 성공의 메세지와 함께 처리된 결과값을 전달,
-        // 기능을 수행하다가 예상치 못한 문제가 발생했다면 error를 전달해준다.
+        // // promise는 javascript에서 제공하는 비동기를 간편하게 처리할 수 있도록 도와주는 object
+        // // promise는 정해진 장시간의 기능을 수행하고 나서 정상적으로 기능이 수행되어졌다면 성공의 메세지와 함께 처리된 결과값을 전달,
+        // // 기능을 수행하다가 예상치 못한 문제가 발생했다면 error를 전달해준다.
 
-        // 어떻게 callback을 쓰지 않고 promise object를 통해서 비동기 코드를 깔끔하게 처리할 수 있는지에 대해 코드로 알아보자
+        // // 어떻게 callback을 쓰지 않고 promise object를 통해서 비동기 코드를 깔끔하게 처리할 수 있는지에 대해 코드로 알아보자
 
         
-        // promise is a JavaScript object for asynchronous operation.
-        // 비동기적인 것을 수행할 때 콜백함수 대신 유용하게 쓸 수 있는 오브젝트
-        // State: pending -> fulfilled or rejected
-        // 우리가 지정한 operation이 수행중일 때는 pending상태가 되고
-        // 이 operation을 성공적으로 끝내게 되면 fullfilled상태가 된다.
-        // 아니면 문제가 생긴다면 rejected 상태가 된다.
-        // Producer vs Consumer
-        // promise에는 우리가 원하는 기능을 수행해서 해당하는 데이터를 만들어내는 producer(정보제공자)와
-        // 제공된 데이터를 필요로 해서 쓰는 consumer(정보소비자)가 있음.
+        // // promise is a JavaScript object for asynchronous operation.
+        // // 비동기적인 것을 수행할 때 콜백함수 대신 유용하게 쓸 수 있는 오브젝트
+        // // State: pending -> fulfilled or rejected
+        // // 우리가 지정한 operation이 수행중일 때는 pending상태가 되고
+        // // 이 operation을 성공적으로 끝내게 되면 fullfilled상태가 된다.
+        // // 아니면 문제가 생긴다면 rejected 상태가 된다.
+        // // Producer vs Consumer
+        // // promise에는 우리가 원하는 기능을 수행해서 해당하는 데이터를 만들어내는 producer(정보제공자)와
+        // // 제공된 데이터를 필요로 해서 쓰는 consumer(정보소비자)가 있음.
 
 
-        // <1. Producer> //
-        // when new Promise is created, the executor runs automatically.
-        // promise는 class이기 때문에 new라는 키워드를 이용해서 object를 생성할 수 있음.
-        // promise에는 executor라는 callback함수를 전달해 줘야 함.
-        // 이 콜백함수에는 또 다른 2가지의 콜백함수를 받는다.
-        // 기능을 정상적으로 수행해서 마지막에 최종 데이터를 전달하는 resolve
-        // 기능을 수행하다가 중간에 문제가 생기면 호출하게 될 reject
-        const promise = new Promise((resolve, reject) => {
-            // doing some heavy work(network, read files)
-            // 네트워크에서 데이터를 받아오거나 파일에서 무언가 큰 데이터를 읽어오는 과정은 시간이 꽤 걸림.
-            // 그런 것을 syncronous(동기적)으로 처리하게 되면 우리가 파일을 읽어오고 데이터를 받아오는 동안
-            // 다음 라인의 코드가 실행되지 않기 때문에 시간이 조금 걸리는 일들은
-            // promise를 만들어서 비동기적으로 처리하는 것이 좋다.
-            console.log('doing something...');
-            // 여기서 한 가지 알 수 있는 사실은
-            // promise를 만드는 순간 우리가 전달한 executor라는 콜백함수가 바로 실행되다는 사실이다.
-            // 이말인 즉슨 내가 promise안에 network 통신을 하는 코드를 작성했다면
-            // promise가 만들어지는 그 순간 바로 network 통신을 수행하게 된다.
-            // 여기서 중요한 포인트는
-            // 만약 네트워크 요청을 사용자가 요구했을 경우에만 해야한다면
-            // 즉 사용자가 버튼을 눌렀을 때 네트워크 요청을 해야하는 경우라면
-            // 이런식으로 작성하게 되면 사용자가 요구하지도 않았는데 불필요한 네트워크 통신이 일어날 수 있음
-            // // 이말은 잘 이해가 안됨.
+        // // <1. Producer> //
+        // // when new Promise is created, the executor runs automatically.
+        // // promise는 class이기 때문에 new라는 키워드를 이용해서 object를 생성할 수 있음.
+        // // promise에는 executor라는 callback함수를 전달해 줘야 함.
+        // // 이 콜백함수에는 또 다른 2가지의 콜백함수를 받는다.
+        // // 기능을 정상적으로 수행해서 마지막에 최종 데이터를 전달하는 resolve
+        // // 기능을 수행하다가 중간에 문제가 생기면 호출하게 될 reject
+        // const promise = new Promise((resolve, reject) => {
+        //     // doing some heavy work(network, read files)
+        //     // 네트워크에서 데이터를 받아오거나 파일에서 무언가 큰 데이터를 읽어오는 과정은 시간이 꽤 걸림.
+        //     // 그런 것을 syncronous(동기적)으로 처리하게 되면 우리가 파일을 읽어오고 데이터를 받아오는 동안
+        //     // 다음 라인의 코드가 실행되지 않기 때문에 시간이 조금 걸리는 일들은
+        //     // promise를 만들어서 비동기적으로 처리하는 것이 좋다.
+        //     console.log('doing something...');
+        //     // 여기서 한 가지 알 수 있는 사실은
+        //     // promise를 만드는 순간 우리가 전달한 executor라는 콜백함수가 바로 실행되다는 사실이다.
+        //     // 이말인 즉슨 내가 promise안에 network 통신을 하는 코드를 작성했다면
+        //     // promise가 만들어지는 그 순간 바로 network 통신을 수행하게 된다.
+        //     // 여기서 중요한 포인트는
+        //     // 만약 네트워크 요청을 사용자가 요구했을 경우에만 해야한다면
+        //     // 즉 사용자가 버튼을 눌렀을 때 네트워크 요청을 해야하는 경우라면
+        //     // 이런식으로 작성하게 되면 사용자가 요구하지도 않았는데 불필요한 네트워크 통신이 일어날 수 있음
+        //     // // 이말은 잘 이해가 안됨.
 
-            // 내일 7:50분 부터 들으면 됨. 드림코딩. 자바스크립트12
-        });
+        //     setTimeout(()=> {
+        //         resolve('ellie');
+        //         // reject(new Error('no network'));
+        //         // Error라는 class는 자바스크립트에서 제공하는 오브젝트 중 하나
+        //         // Uncaught라는 잡히지 않는 에러가 발생했다고 뜸.
+        //     }, 2000);
+        // });
+
+
+        // 2. Consumers: then, catch, finally //
+        // promise
+        //     .then((value) => {
+        //     // 여기서 value라는 파라미터는 promise가 정상적으로 잘 수행돼서 마지막에 resolve콜백함수에서 전달된 ellie라는 값
+        //         console.log(value);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
+        //     //promise에 then을 호출하게 되면 then은 결국 똑같은 promise를 return하기 때문에 
+        //     //그 return된 promise에 catch를 다시 호출할 수가 있음
+
+
+
+        // promise 오브젝트를 만들 때 우리가 비동기적으로 수행하고 싶은 기능들의 코드를 작성하고 나서
+        // 성공적으로 잘했다면 resolve를 호출하게 되고
+        // 실패했다면 실패한 것과 왜 실패했는지 error를 전달하게 됨.
+
+        // 나중에 promise를 이용해서 then과 catch를 이용해서 성공한 값 또는 실패한 error를 받아와서
+        // 우리가 원하는 방식으로 처리해주면 됨.
+
+
+
+        // 3. Promise chaining
+        const fetchNumber = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(()=> {resolve(1)}, 3000);
+            })
+        }
+
+        fetchNumber()
+        .then((num) => {
+            return num*2
+        })
+        .then((num) => {
+            return num*3
+        })
+        .then((num) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(()=> {
+                    resolve(num-1)
+                }, 1000)
+            })
+        })
+        .then((num) => {
+            console.log(num);
+        })
+
+
+        // 3. Promise chaining 축약버전
+        // const fetchNumber = new Promise((resolve, reject) => {
+        //     setTimeout(()=> {resolve(1)}, 3000);
+        // })
+
+        // fetchNumber
+        // .then((num) => num*2)
+        // .then((num) => num*3)
+        // .then((num) => {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(()=> {
+        //             resolve(num-1)
+        //         }, 1000)
+        //     })
+        // })
+        // .then((num) => {
+        //     console.log(num);
+        // })
+
+
+
+        //4. Error Handling
+        const getHen = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(()=>{resolve('닭')},1000);
+            })
+        }
+        const getEgg = (hen) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(()=>{resolve(`${hen} => 달걀`)},1000);
+                // setTimeout(()=>{reject(new Error(`error! ${hen} => 달걀`))}, 1000);
+            })
+        }
+        const cook = (egg) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(()=>{resolve(`${egg} => 달걀프라이`)},1000);
+            })
+        }
+
+        getHen()
+        .then((hen) => {
+            return getEgg(hen)
+        })
+        .catch((error) => {
+            return '빵';
+        })
+        // 계란을 받아오는 것에 문제가 생겨도 전체적인 promise chain에 문제가 생기지 않도록
+        // 빵구처리를 해줌
+        .then((egg) => {
+            return cook(egg)
+        })
+        .then((meal) => {
+            console.log(meal)
+        })  
+
+
+
+        // 축약버전
+        // const getHen = () => 
+        //     new Promise((resolve, reject) => {
+        //         setTimeout(()=>resolve('닭'),1000);
+        //     })
+    
+        // const getEgg = (hen) => 
+        //     new Promise((resolve, reject) => {
+        //         setTimeout(()=>resolve(`${hen} => 달걀`),1000);
+        //     })
+        
+        // const cook = (egg) => 
+        //     new Promise((resolve, reject) => {
+        //         setTimeout(()=>resolve(`${egg} => 달걀프라이`),1000);
+        //     })
+        
+
+        // getHen()
+        // .then(hen => getEgg(hen))
+        // .then(egg => cook(egg))
+        // .then(meal => console.log(meal));
 
     </script>
 </body>
