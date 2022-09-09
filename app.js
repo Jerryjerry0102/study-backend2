@@ -127,6 +127,11 @@ app.get("/b_callback_to_promise", (req, res) => {
     res.render("b_callback_to_promise", {});
 })
 
+// 9.9 드림코딩
+app.get("/Class_Object", (req, res) => {
+    res.render("Class_Object", {});
+})
+
 app.listen(port, ()=>{
     console.log("server open: ", port);
 });
